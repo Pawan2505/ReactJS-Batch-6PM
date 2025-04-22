@@ -4,8 +4,10 @@ React Folder Structure Video 2 : https://drive.google.com/file/d/1uQDrYMoeAksXLh
 
 
 Note :
-Question : Is YouTube built in React JS?
+<h1>Question : Is YouTube built in React JS?</h1>
+<pre>
 Answer : Not entirely
          YouTube's main platform (youtube.com) is not fully built in React.
-
-        But yes — React is used in some
+         But yes — React is used in some
+</pre> 
+       
