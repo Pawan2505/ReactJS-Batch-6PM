@@ -134,7 +134,7 @@ Here are two video links to help you understand the concepts better:
 
 - **Part 1:** [Watch Video Part 1](https://drive.google.com/file/d/1-Ea7kPB93mSZxeLbUgE2OneP0Kar_PQd/view?usp=sharing)
 - **Part 2:** [Watch Video Part 2](https://drive.google.com/file/d/1GpDnE6shTL1-idfJFM7t5cFFCiY_TPSJ/view?usp=sharing)
-
+- **Part 3:** [Watch Video Part 3](https://drive.google.com/file/d/1OHekrxAXWIC53hS4N6tIQyYa0IgggUmZ/view?usp=sharing)
 ---
 
 ### **Note:**
