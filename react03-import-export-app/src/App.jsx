@@ -1,10 +1,11 @@
 import React from 'react'
-// import MyComponent from './components/DefaultComponent'
+// import MyCompnt from './components/DefaultComponent'
 import {NamedComponent1,NamedComponent2} from './components/NamedComponent'
 const App = () => {
   return (
     <div>
       {/* <MyComponent/> */}
+      {/* <MyCompnt/> */}
       <NamedComponent1 />
       <NamedComponent2/>
     </div>
