@@ -4,7 +4,7 @@
 
 ### 1. What are Props?
 
-**Props** stands for **properties**.  
+**Props** stands for **properties**.
 In React, props are used to **pass data from Parent to Child Components**. They work just like **function arguments**. Props allow us to send values from a parent component to its child, making the component **dynamic and reusable**.
 
 ---
@@ -185,21 +185,25 @@ export default ProtoTypeComponent;
 
 ### Prop Types
 
-| Prop Type    | Example | Explanation |
-|--------------|---------|-------------|
-| **Array**    | `[1, 2, 3]` | Array of values passed as prop. |
-| **Boolean**  | `true` / `false` | Use to toggle visibility or states. |
-| **Function** | `onClick={handleClick}` | Passing functions to handle events or actions. |
-| **Number**   | `100` | Numbers used for calculations, counts, etc. |
-| **Object**   | `{ name: "John", age: 30 }` | Passing structured data. |
-| **String**   | `"Hello World"` | Simple text or labels. |
-| **Symbol**   | `Symbol("id")` | Rarely used, unique identifier. |
+| Prop Type    | Example                     | Explanation                                    |
+| ------------ | --------------------------- | ---------------------------------------------- |
+| **Array**    | `[1, 2, 3]`                 | Array of values passed as prop.                |
+| **Boolean**  | `true` / `false`            | Use to toggle visibility or states.            |
+| **Function** | `onClick={handleClick}`     | Passing functions to handle events or actions. |
+| **Number**   | `100`                       | Numbers used for calculations, counts, etc.    |
+| **Object**   | `{ name: "Pawan", age: 28 }` | Passing structured data.                       |
+| **String**   | `"Hello World"`             | Simple text or labels.                         |
+| **Symbol**   | `Symbol("id")`              | Rarely used, unique identifier.                |
 
 ---
 
 ### Note:
 
-- Props are a powerful feature in React, allowing data to be shared between components.
-- Destructuring props makes code more concise and readable.
-- Use **PropTypes** for validation to ensure your components receive the correct types of data.
-- Practice passing different data types like arrays, booleans, numbers, and objects to fully understand how props work.
+* Props are a powerful feature in React, allowing data to be shared between components.
+* Destructuring props makes code more concise and readable.
+* Use **PropTypes** for validation to ensure your components receive the correct types of data.
+* Practice passing different data types like arrays, booleans, numbers, and objects to fully understand how props work.
+
+---
+
+### Video : [ReactJS Props Tutorial](https://drive.google.com/file/d/1MAaZhCEubcZEHFB2-LOUdgIsifvxW3-M/view?usp=sharing)

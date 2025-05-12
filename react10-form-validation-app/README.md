@@ -1,12 +1,116 @@
-# React + Vite
+### **React Controlled Component with Validation**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
+This example demonstrates a **controlled component** in React with form validation for email and password fields.
 
-Currently, two official plugins are available:
+```javascript
+import React, { useState } from "react";
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+const App = () => {
+  // Step 1: Define state for inputs and errors
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailErrors, setEmailErrors] = useState("");
+  const [passwordErrors, setPasswordErrors] = useState("");
 
-## Expanding the ESLint configuration
+  // Step 2: Handle form submit with validation
+  const handleSubmit = (e) => {
+    e.preventDefault(); // stop page refresh
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+    // Reset previous errors
+    setEmailErrors("");
+    setPasswordErrors("");
+
+    let isValidate = true;
+
+    // Email validation
+    if (email.trim() === "") {
+      setEmailErrors("Email is Required!");
+      isValidate = false;
+    }
+
+    // Password validation
+    if (password.length < 6) {
+      setPasswordErrors("Password should be minimum six letters!");
+      isValidate = false;
+    }
+
+    // If all validation passed
+    if (isValidate) {
+      console.log(email);
+      console.log(password);
+      setEmail("");
+      setPassword("");
+    }
+  };
+
+  return (
+    <div style={{ maxWidth: "500px", padding: "20px" }}>
+      <form method="post" onSubmit={handleSubmit}>
+        <div>
+          <input
+            type="email"
+            value={email}
+            placeholder="Enter Email..."
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {emailErrors && <p style={{ color: "red" }}>{emailErrors}</p>}
+        </div>
+
+        <div>
+          <input
+            type="password"
+            value={password}
+            placeholder="Enter Password..."
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {passwordErrors && <p style={{ color: "red" }}>{passwordErrors}</p>}
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default App;
+```
+
+#### **Key Concepts:**
+
+1. **useState()**:
+
+   * We use `useState` to store the values of email, password, and error messages for validation.
+
+2. **Controlled Component**:
+
+   * The value of the input fields (`value={email}`, `value={password}`) is directly tied to the state, making them **controlled components**. Changes to the input fields are handled by the `onChange` event, updating the state as the user types.
+
+3. **Form Validation**:
+
+   * When the form is submitted:
+
+     * **Email Validation**: Checks if the email field is empty.
+     * **Password Validation**: Ensures the password is at least 6 characters long.
+     * If validation fails, it shows the corresponding error messages.
+     * If validation passes, it logs the values to the console and resets the form.
+
+4. **Conditional Rendering**:
+
+   * The error messages are conditionally rendered based on the state (`{emailErrors && <p>...</p>}`).
+
+5. **Form Reset**:
+
+   * After a successful form submission, the form fields are cleared using `setEmail("")` and `setPassword("")`.
+
+---
+
+### **Video Explanation**
+
+For a more detailed explanation, check out this [Video Tutorial](https://drive.google.com/file/d/1PI48Hc1XQ52SdC4-3D22Cca_0mfXRrz6/view?usp=sharing).
+
+### Here's the video link for form styling:
+
+[Form Styling Video](https://drive.google.com/file/d/1fbUHKB5YfcgfYdUlOdCJ2uNkhoBD31lR/view?usp=sharing)
+
+
