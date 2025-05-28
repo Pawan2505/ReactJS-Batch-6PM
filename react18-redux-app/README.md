@@ -1,70 +1,149 @@
-# Getting Started with Create React App
+## 📘 Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### What is Redux?
 
-## Available Scripts
+Redux is a **state manager**. It helps manage your app’s data (state) in one central place.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### 📁 Folder Structure (from your image)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+src/
+│
+├── components/
+│   └── Counter.jsx        ⬅️ UI component
+│
+├── redux/
+│   ├── Action.jsx         ⬅️ Actions (describe what should happen)
+│   ├── Reducer.jsx        ⬅️ Reducer (updates the state)
+│   └── Store.jsx          ⬅️ Store (central state storage)
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+### Redux Flow
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+[UI (Button)] 
+   ↓ dispatch
+[Action] 
+   ↓ 
+[Reducer] 
+   ↓ 
+[Store] 
+   ↓ 
+[UI Updated Automatically]
+```
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1️Action (📄 Action.jsx)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Action is like a message. It tells Redux what to do.**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```js
+export const increase = () => {
+  return {
+    type: "INCREMENT",
+  };
+};
 
-### `npm run eject`
+export const decrease = () => {
+  return {
+    type: "DECREMENT",
+  };
+};
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Reducer (📄 Reducer.jsx)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Reducer is a function that updates the state.**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```js
+const initialState = {
+  count: 0,
+};
 
-## Learn More
+export const counterReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "INCREMENT":
+      return { ...state, count: state.count + 1 };
+    case "DECREMENT":
+      return { ...state, count: state.count - 1 };
+    default:
+      return state;
+  }
+};
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Reducer always returns **a new state**. It never changes the old one directly.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+### Store (📄 Store.jsx)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Store holds the state. It connects Redux to React.**
 
-### Analyzing the Bundle Size
+```js
+import { createStore } from "redux";
+import { counterReducer } from "./Reducer";
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+export const store = createStore(counterReducer);
+```
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### UI Component (📄 Counter.jsx)
 
-### Advanced Configuration
+**Use Redux state and dispatch in the component.**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```js
+import { useSelector, useDispatch } from 'react-redux';
+import { increase, decrease } from '../redux/Action';
 
-### Deployment
+const Counter = () => {
+  const count = useSelector((state) => state.count);   // Read state
+  const dispatch = useDispatch();                      // Send actions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  return (
+    <div>
+      <h1>Redux Counter</h1>
+      <h2>Count : {count}</h2>
+      <button onClick={() => dispatch(increase())}>+</button>
+      <button onClick={() => dispatch(decrease())}>-</button>
+    </div>
+  );
+};
+```
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Main App (📄 index.js)
+
+**Wrap App with `<Provider>` so all components can access Redux.**
+
+```js
+import { Provider } from 'react-redux';
+import { store } from './redux/Store';
+
+<Provider store={store}>
+  <App />
+</Provider>
+```
+
+---
+
+### Summary
+
+| Concept         | Purpose                               |
+| --------------- | ------------------------------------- |
+| `Action`        | Says what should happen (`type`)      |
+| `Reducer`       | Receives action and updates the state |
+| `Store`         | Keeps all your state in one place     |
+| `dispatch()`    | Sends action to reducer via store     |
+| `useSelector()` | Gets the latest state in component    |
+
+---
