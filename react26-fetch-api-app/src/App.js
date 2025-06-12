@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 
 const App = () => {
+
   const [users, setUsers] = useState([]);
 
   useEffect(()=>{
-    fetch('http://localhost:3000/products')
-    .then((respose)=>respose.json())
+    fetch("http://localhost:3000/products")
+    .then((response)=>response.json())
     .then((data)=>setUsers(data))
     .catch((err)=>console.log(err))
-  })
+  },[])
   return (
     <div>
       <h1>Users Details</h1>
